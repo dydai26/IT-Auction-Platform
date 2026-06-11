@@ -1,0 +1,206 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  height: 100%;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.08);
+  border-color: #d1d5db;
+}
+
+.categoryBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8c9ba5; /* Steel blue-gray color */
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.cardTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: #7a8b99; /* Muted description text */
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: auto;
+  margin-bottom: 1.25rem;
+}
+
+.metaItemLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metaItemRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  justify-content: flex-end;
+}
+
+.metaLabel {
+  font-size: 0.75rem;
+  color: #8c9ba5;
+  font-weight: 500;
+}
+
+.metaValuePrice {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #b38728; /* Gold/bronze text */
+}
+
+.metaLabelBids {
+  font-size: 0.75rem;
+  color: #8c9ba5;
+}
+
+.metaValueTime {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ef4444;
+  font-variant-numeric: tabular-nums;
+}
+
+.metaValueTimeEnded {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #8c9ba5;
+}
+
+.bidButton {
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #111827;
+  background: #111827;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.card:hover .bidButton {
+  background: #374151;
+  border-color: #374151;
+}
+
+.bidButtonEnded {
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #9ca3af;
+  text-align: center;
+  cursor: not-allowed;
+}
+
+.favoriteBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.favoriteBtn:hover {
+  background: #f3f4f6;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  .cardTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .cardDescription {
+    display: none;
+  }
+  .categoryBadge {
+    font-size: 0.65rem;
+    margin-bottom: 0.5rem;
+  }
+  .metaGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .metaItemRight {
+    align-items: flex-start;
+  }
+  .metaValuePrice, .metaValueTime, .metaValueTimeEnded {
+    font-size: 1.1rem;
+  }
+  .bidButton, .bidButtonEnded {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+  .favoriteBtn {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 0.75rem;
+  }
+  .cardTitle {
+    font-size: 1rem;
+  }
+  .metaValuePrice, .metaValueTime, .metaValueTimeEnded {
+    font-size: 1rem;
+  }
+  .metaLabel, .metaLabelBids {
+    font-size: 0.65rem;
+  }
+  .bidButton, .bidButtonEnded {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+}
