@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { updateSession } from './lib/supabase/middleware';
 
 const locales = ['ru', 'en', 'zh'];
-const defaultLocale = 'ru';
+const defaultLocale = 'en';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

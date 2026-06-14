@@ -52,7 +52,7 @@ export default function AboutPage() {
         {rules.length > 0 && (
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>{aboutT.rules.title}</h2>
-            <div className={styles.grid}>
+            <div className={styles.rulesGrid}>
               {rules.map((rule: any, index: number) => (
                 <div key={index} className={styles.card}>
                   <div className={styles.ruleIcon}>

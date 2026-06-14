@@ -18,7 +18,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   
-  const language = (params.lang as Language) || 'ru';
+  const language = (params.lang as Language) || 'en';
 
   const setLanguage = (lang: Language) => {
     // Replace the current language in the URL with the new one

@@ -90,7 +90,7 @@ export const en = {
       },
       {
         q: 'Who can post lots?',
-        a: 'Any registered user of the platform can create their own auction after verifying their account.'
+        a: 'Any registered user of the platform can create their own auction after verifying their account.\n\nTo put a lot up for auction, please contact the administration:\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
       }
     ]
   },
@@ -176,6 +176,10 @@ export const en = {
         {
           title: 'Security',
           desc: 'Each lot is checked by moderators before publication. We guarantee that the description matches the real condition of the item.'
+        },
+        {
+          title: 'Posting Lots',
+          desc: 'To put a lot up for auction, please contact the administration:\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
         }
       ]
     },

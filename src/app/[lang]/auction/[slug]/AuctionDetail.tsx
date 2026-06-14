@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { useApp } from '@/context/AppContext';
+import { slugify } from '@/lib/utils/slugify';
 
 export default function AuctionDetail({ id }: { id: string }) {
   const { language, t } = useLanguage();
@@ -20,7 +21,16 @@ export default function AuctionDetail({ id }: { id: string }) {
     return () => clearInterval(timer);
   }, []);
 
-  const lot = lots.find(a => a.id === id);
+  const slug = id; // Note: 'id' prop from the URL is actually the pure slug now
+  console.log('AuctionDetail slug:', slug, 'Lots length:', lots.length);
+  const lot = lots.find(a => {
+    const sr = slugify(a.title_ru);
+    const se = slugify(a.title_en);
+    const sz = slugify(a.title_zh);
+    const match = sr === slug || se === slug || sz === slug || a.id === slug;
+    if (match) console.log('Found matching lot:', a.id);
+    return match;
+  });
 
   const formatPrice = (amount: number) => {
     const currency = lot?.currency || 'USD';
@@ -54,31 +64,6 @@ export default function AuctionDetail({ id }: { id: string }) {
       cursor: 'pointer',
       transition: 'color 0.2s',
     },
-    layout: {
-      display: 'grid',
-      gridTemplateColumns: '1.2fr 1fr',
-      gap: '3rem',
-    },
-    // Left column
-    imageArea: {
-      width: '100%',
-      height: '380px',
-      background: 'var(--secondary)',
-      borderRadius: '16px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginBottom: '2rem',
-      border: '1px solid var(--border)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    },
-    title: {
-      fontSize: '2.5rem',
-      fontWeight: 700,
-      color: 'var(--foreground)',
-      marginBottom: '1rem',
-    },
     categoryBadge: {
       display: 'inline-block',
       padding: '0.4rem 0.85rem',
@@ -94,17 +79,6 @@ export default function AuctionDetail({ id }: { id: string }) {
       lineHeight: '1.7',
       color: 'var(--foreground)',
       opacity: 0.9,
-    },
-    // Right column (Bidding Card)
-    bidCard: {
-      background: 'white',
-      border: '1px solid var(--border)',
-      borderRadius: '16px',
-      padding: '2.5rem',
-      boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
-      position: 'sticky' as const,
-      top: '120px',
-      height: 'fit-content',
     },
     priceBox: {
       marginBottom: '2rem',
@@ -185,6 +159,14 @@ export default function AuctionDetail({ id }: { id: string }) {
     }
   };
   // =======================================================
+
+  if (lots.length === 0) {
+    return (
+      <div style={{ textAlign: 'center', padding: '10rem 0' }}>
+        <h2>{language === 'ru' ? 'Загрузка...' : language === 'zh' ? '加载中...' : 'Loading...'}</h2>
+      </div>
+    );
+  }
 
   if (!lot) {
     return (
@@ -267,21 +249,16 @@ export default function AuctionDetail({ id }: { id: string }) {
         &larr; {t.lots.backToList}
       </Link>
 
-      <div style={styles.layout}>
+      <div className="auction-detail-layout">
         {/* Left Column: Info & Details */}
         <div>
-          <div style={{...styles.imageArea, backgroundImage: lot.image ? `url(${lot.image})` : 'none'}}>
-            {!lot.image && (
-              <span style={{ color: '#9ca3af', fontSize: '3rem' }}>{(title || '').charAt(0)}</span>
-            )}
-          </div>
           <span style={styles.categoryBadge}>{categoryName}</span>
-          <h1 style={styles.title}>{title}</h1>
+          <h1 className="auction-detail-title">{title}</h1>
           <p style={styles.description}>{description}</p>
         </div>
 
         {/* Right Column: Place Bids & History */}
-        <div style={styles.bidCard}>
+        <div className="auction-bid-card">
           <div style={styles.priceBox}>
             <p style={styles.priceLabel}>{t.lots.currentBid}</p>
             <p style={styles.priceValue}>{formatPrice(lot.currentPrice)}</p>

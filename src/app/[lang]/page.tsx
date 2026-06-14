@@ -10,7 +10,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     <div style={{ backgroundColor: 'var(--background)' }}>
       <Header />
       <HeroSection lang={resolvedParams.lang} />
-      <main className="container">
+      <main className="container" style={{ paddingTop: '2rem' }}>
         <PopularLots />
         <FaqSection />
       </main>

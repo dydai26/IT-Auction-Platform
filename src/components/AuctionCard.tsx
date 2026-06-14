@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import { Lot, useApp } from '@/context/AppContext';
 import styles from './AuctionCard.module.css';
+import { slugify } from '@/lib/utils/slugify';
 
 interface AuctionCardProps {
   lot: Lot;
@@ -82,7 +83,7 @@ export default function AuctionCard({ lot, isFavorite, onToggleFavorite, showFav
   };
 
   return (
-    <Link href={`/${language}/auction/${lot.id}`} style={{ textDecoration: 'none' }}>
+    <Link href={`/${language}/auction/${slugify(title)}`} style={{ textDecoration: 'none' }}>
       <div className={styles.card}>
         {/* Category Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>

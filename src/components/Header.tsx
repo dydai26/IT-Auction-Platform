@@ -6,6 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useApp } from '@/context/AppContext';
 import AuthModal from './AuthModal';
 import { useRouter } from 'next/navigation';
+import LogoIcon from './LogoIcon';
 
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
@@ -40,8 +41,8 @@ export default function Header() {
   };
 
   const langs = [
-    { code: 'ru', label: 'RU' },
     { code: 'en', label: 'EN' },
+    { code: 'ru', label: 'RU' },
     { code: 'zh', label: 'ZH' }
   ];
 
@@ -57,11 +58,19 @@ export default function Header() {
           background: 'rgba(255, 255, 255, 0.9)',
           backdropFilter: 'blur(10px)',
           borderBottom: '1px solid #e5e7eb',
-          padding: '1rem 0'
         }}
       >
+        {/* Top Contact Bar */}
+        <div style={{ background: '#f8fafc', padding: '0.5rem 0', borderBottom: '1px solid #e5e7eb' }}>
+          <div className="container top-bar-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+            <a href="mailto:ideas100technologies@gmail.com" className="top-bar-link"><strong>E-mail:</strong> ideas100technologies@gmail.com</a>
+            <a href="tel:+380500506695" className="top-bar-link"><strong>Viber:</strong> +380500506695</a>
+            <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" className="top-bar-link"><strong>Telegram:</strong> @ABRAM_GOLDENBERG</a>
+          </div>
+        </div>
+
         <div 
-          className="container" 
+          className="container header-container" 
           style={{ 
             display: 'flex', 
             justifyContent: 'space-between', 
@@ -72,15 +81,18 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href={`/${language}`}
-            className="gold-text header-logo" 
+            className="header-logo" 
             style={{ 
               fontWeight: 'bold',
-              letterSpacing: '2px',
               textDecoration: 'none',
-              zIndex: 51
+              zIndex: 51,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
             }}
           >
-            IT
+            <LogoIcon className="logo-it" />
+            <span className="gold-text logo-text">Ideas Technologies</span>
           </Link>
           
           {/* Desktop Nav */}
@@ -101,14 +113,7 @@ export default function Header() {
             >
               {t.nav.about}
             </Link>
-            <a 
-              href="#footer" 
-              style={{ fontSize: '1.1rem', fontWeight: 500, color: '#171717', textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#d4af37'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#171717'}
-            >
-              {t.nav.contacts || 'Contacts'}
-            </a>
+            
           </div>
           
           {/* Right Section */}
@@ -213,15 +218,17 @@ export default function Header() {
                 </div>
               ) : (
                 <button 
-                onClick={() => setIsAuthModalOpen(true)}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: '0.5rem' }}
-                aria-label="Account"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#171717' }}>
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </button>
+                  onClick={() => setIsAuthModalOpen(true)}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: '0.5rem', color: '#171717', transition: 'color 0.2s' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#d4af37'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#171717'}
+                  aria-label="Account"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </button>
               )}
             </div>
 
@@ -255,7 +262,7 @@ export default function Header() {
         style={{
           position: 'fixed', inset: 0, background: '#fff', zIndex: 40,
           display: isMobileMenuOpen ? 'flex' : 'none',
-          flexDirection: 'column', paddingTop: '100px', paddingBottom: '2rem',
+          flexDirection: 'column', paddingTop: '140px', paddingBottom: '2rem',
           paddingLeft: '2rem', paddingRight: '2rem', gap: '2rem',
           overflowY: 'auto'
         }}
@@ -337,9 +344,43 @@ export default function Header() {
         .mobile-toggle {
           display: none !important;
         }
-        .header-logo {
-          font-size: 2rem !important;
+        .logo-it {
+          font-size: 3.5rem;
+          line-height: 1;
+          letter-spacing: 2px;
         }
+        .logo-text {
+          font-size: 2.5rem;
+          letter-spacing: normal;
+          line-height: normal;
+          padding-bottom: 0.3rem;
+        }
+        .top-bar-container {
+          gap: 1.5rem;
+        }
+        .top-bar-link {
+          color: #475569;
+          text-decoration: none;
+          font-size: 0.875rem;
+        }
+        .header-container {
+          padding-top: 2rem;
+          padding-bottom: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+          .logo-it {
+            font-size: 2.5rem;
+          }
+          .logo-text {
+            font-size: 1.8rem;
+          }
+          .header-container {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+          }
+        }
+
         @media (max-width: 768px) {
           .desktop-nav {
             display: none !important;
@@ -347,8 +388,37 @@ export default function Header() {
           .mobile-toggle {
             display: block !important;
           }
-          .header-logo {
-            font-size: 1.6rem !important;
+          .logo-it {
+            font-size: 2rem;
+          }
+          .logo-text {
+            font-size: 1.4rem;
+          }
+          .top-bar-container {
+            gap: 0.75rem;
+            justify-content: center;
+          }
+          .top-bar-link {
+            font-size: 0.8rem;
+          }
+          .header-container {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .logo-it {
+            font-size: 1.8rem;
+          }
+          .logo-text {
+            font-size: 1.2rem;
+          }
+          .top-bar-container {
+            gap: 0.5rem;
+          }
+          .top-bar-link {
+            font-size: 0.75rem;
           }
         }
       `}</style>

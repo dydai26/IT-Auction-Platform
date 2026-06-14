@@ -86,7 +86,7 @@ export const zh = {
       },
       {
         q: '谁可以发布拍品？',
-        a: '任何平台注册用户在验证其账户后都可以创建自己的拍卖。'
+        a: '任何平台注册用户在验证其账户后都可以创建自己的拍卖。\n\n如需将拍品上架拍卖，请联系管理部门：\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
       },
       {
         q: '出价是匿名的吗？',
@@ -176,6 +176,10 @@ export const zh = {
         {
           title: '安全性',
           desc: '每件拍品在发布前都会经过审核人员检查。我们保证描述与物品的实际状况相符。'
+        },
+        {
+          title: '发布拍品',
+          desc: '如需将拍品上架拍卖，请联系管理部门：\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
         }
       ]
     },

@@ -58,6 +58,13 @@ export interface NotificationSettings {
   telegramEnabled: boolean;
   telegramBotToken: string;
   telegramChatId: string;
+  bannerImage?: string;
+  bannerTitleRu?: string;
+  bannerSubtitleRu?: string;
+  bannerTitleEn?: string;
+  bannerSubtitleEn?: string;
+  bannerTitleZh?: string;
+  bannerSubtitleZh?: string;
 }
 
 // --- Структура контексту ---
@@ -92,7 +99,14 @@ const defaultSettings: NotificationSettings = {
   smsGateway: 'https://api.sms-provider.com',
   telegramEnabled: false,
   telegramBotToken: '',
-  telegramChatId: ''
+  telegramChatId: '',
+  bannerImage: '',
+  bannerTitleRu: 'IT Ideas Technologies',
+  bannerSubtitleRu: 'Ексклюзивні аукціони техніки в реальному часі',
+  bannerTitleEn: 'IT Ideas Technologies',
+  bannerSubtitleEn: 'Exclusive real-time IT equipment auctions',
+  bannerTitleZh: 'IT Ideas Technologies',
+  bannerSubtitleZh: '独家实时 IT 设备拍卖'
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -231,7 +245,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
         smsGateway: data.sms_gateway || '',
         telegramEnabled: data.telegram_enabled,
         telegramBotToken: data.telegram_bot_token || '',
-        telegramChatId: data.telegram_chat_id || ''
+        telegramChatId: data.telegram_chat_id || '',
+        bannerImage: data.banner_image || '',
+        bannerTitleRu: data.banner_title_ru || 'IT Ideas Technologies',
+        bannerSubtitleRu: data.banner_subtitle_ru || 'Ексклюзивні аукціони техніки в реальному часі',
+        bannerTitleEn: data.banner_title_en || 'IT Ideas Technologies',
+        bannerSubtitleEn: data.banner_subtitle_en || 'Exclusive real-time IT equipment auctions',
+        bannerTitleZh: data.banner_title_zh || 'IT Ideas Technologies',
+        bannerSubtitleZh: data.banner_subtitle_zh || '独家实时 IT 设备拍卖'
       });
     } else {
       await supabase.from('settings').insert({ id: 'global', ...defaultSettings });
@@ -453,6 +474,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (newSettings.telegramEnabled !== undefined) dbPayload.telegram_enabled = newSettings.telegramEnabled;
     if (newSettings.telegramBotToken !== undefined) dbPayload.telegram_bot_token = newSettings.telegramBotToken;
     if (newSettings.telegramChatId !== undefined) dbPayload.telegram_chat_id = newSettings.telegramChatId;
+    if (newSettings.bannerImage !== undefined) dbPayload.banner_image = newSettings.bannerImage;
+    if (newSettings.bannerTitleRu !== undefined) dbPayload.banner_title_ru = newSettings.bannerTitleRu;
+    if (newSettings.bannerSubtitleRu !== undefined) dbPayload.banner_subtitle_ru = newSettings.bannerSubtitleRu;
+    if (newSettings.bannerTitleEn !== undefined) dbPayload.banner_title_en = newSettings.bannerTitleEn;
+    if (newSettings.bannerSubtitleEn !== undefined) dbPayload.banner_subtitle_en = newSettings.bannerSubtitleEn;
+    if (newSettings.bannerTitleZh !== undefined) dbPayload.banner_title_zh = newSettings.bannerTitleZh;
+    if (newSettings.bannerSubtitleZh !== undefined) dbPayload.banner_subtitle_zh = newSettings.bannerSubtitleZh;
 
     const { error } = await supabase
       .from('settings')

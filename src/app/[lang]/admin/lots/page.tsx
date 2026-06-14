@@ -226,7 +226,6 @@ export default function AdminLots() {
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead style={{ backgroundColor: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
             <tr>
-              <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.875rem', fontWeight: 600, color: '#4b5563' }}>Фото</th>
               <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.875rem', fontWeight: 600, color: '#4b5563' }}>Название (RU / EN / ZH)</th>
               <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.875rem', fontWeight: 600, color: '#4b5563' }}>Категория (RU)</th>
               <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.875rem', fontWeight: 600, color: '#4b5563' }}>Цена</th>
@@ -237,15 +236,6 @@ export default function AdminLots() {
           <tbody>
             {lots.map((lot) => (
               <tr key={lot.id} style={{ borderBottom: '1px solid #e5e7eb', transition: 'background-color 0.1s' }} onMouseEnter={e => e.currentTarget.style.backgroundColor = '#f9fafb'} onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}>
-                <td style={{ padding: '1rem' }}>
-                  <div style={{ width: '40px', height: '40px', borderRadius: '6px', backgroundColor: '#e5e7eb', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {lot.image ? (
-                      <img src={lot.image} alt={lot.title_ru} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => (e.currentTarget.style.display = 'none')} />
-                    ) : (
-                      <span style={{ fontSize: '10px', color: '#9ca3af' }}>No img</span>
-                    )}
-                  </div>
-                </td>
                 <td style={{ padding: '1rem' }}>
                   <div style={{ fontWeight: 600, color: '#111827' }}>{lot.title_ru}</div>
                   <div style={{ fontSize: '0.8rem', color: '#6b7280' }}>EN: {lot.title_en} | ZH: {lot.title_zh}</div>
@@ -287,7 +277,7 @@ export default function AdminLots() {
             ))}
             {lots.length === 0 && (
               <tr>
-                <td colSpan={6} style={{ padding: '3rem', textAlign: 'center', color: '#6b7280' }}>
+                <td colSpan={5} style={{ padding: '3rem', textAlign: 'center', color: '#6b7280' }}>
                   <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📦</div>
                   <p style={{ fontWeight: 600, margin: 0 }}>Лоты не найдены</p>
                   <p style={{ fontSize: '0.875rem' }}>Создайте свой первый лот, чтобы он появился в каталоге.</p>
@@ -463,24 +453,6 @@ export default function AdminLots() {
                           style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px' }}
                           placeholder="Напр. Apple"
                         />
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
-                      <label style={{ fontSize: '0.875rem', fontWeight: 600, color: '#374151' }}>Изображение лота</label>
-                      <input 
-                        type="file" 
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        style={{ padding: '0.65rem 0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px', backgroundColor: '#fff', cursor: 'pointer' }}
-                      />
-                      {/* Image Preview Box */}
-                      <div style={{ marginTop: '0.5rem', height: '100px', backgroundColor: '#f9fafb', border: '1px dashed #d1d5db', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                        {formData.image ? (
-                          <img src={formData.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                        ) : (
-                          <span style={{ color: '#9ca3af', fontSize: '0.875rem' }}>Превью</span>
-                        )}
                       </div>
                     </div>
 

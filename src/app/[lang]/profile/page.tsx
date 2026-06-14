@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import AuthModal from '@/components/AuthModal';
 import { useApp } from '@/context/AppContext';
 import { useLanguage } from '@/context/LanguageContext';
+import { slugify } from '@/lib/utils/slugify';
 import styles from './profile.module.css';
 
 export default function ProfilePage() {
@@ -216,7 +217,7 @@ export default function ProfilePage() {
                         </span>
                       </div>
                       <Link 
-                        href={`/${lang}/auction/${lot.id}`}
+                        href={`/${lang}/auction/${slugify(getLotTitle(lot))}`}
                         className="btn-secondary"
                         style={{ display: 'block', width: '100%', textAlign: 'center', marginTop: '1.25rem', padding: '0.65rem' }}
                       >
