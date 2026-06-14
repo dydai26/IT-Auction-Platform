@@ -407,7 +407,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [currentUser]);
 
   // --- Lots Actions ---
-  const addLot = async (lotData: Omit<Lot, 'id' | 'createdAt' | 'currentPrice'>) => {
+  const addLot = async (lotData: Omit<Lot, 'id' | 'createdAt' | 'currentPrice' | 'winnerId' | 'status'>) => {
     const { error } = await supabase
       .from('auctions')
       .insert({
