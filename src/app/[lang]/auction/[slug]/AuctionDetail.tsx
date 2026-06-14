@@ -187,7 +187,7 @@ export default function AuctionDetail({ id }: { id: string }) {
 
   const end = new Date(lot.endTime).getTime();
   const diff = end - now;
-  const isEnded = diff <= 0;
+  const isEnded = diff <= 0 || lot.status === 'ended';
 
   const formatTimeLeft = () => {
     if (diff <= 0) {

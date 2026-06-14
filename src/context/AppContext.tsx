@@ -23,6 +23,7 @@ export interface Lot {
   createdAt: string;
   image: string;
   winnerId?: string | null;
+  status: 'active' | 'ended' | 'cancelled';
 }
 
 export interface Bid {
@@ -146,7 +147,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         endTime: item.end_time,
         createdAt: item.created_at,
         image: item.image || '',
-        winnerId: item.winner_id || null
+        winnerId: item.winner_id || null,
+        status: item.status || 'active'
       })));
     }
   };
@@ -255,7 +257,23 @@ export function AppProvider({ children }: { children: ReactNode }) {
         bannerSubtitleZh: data.banner_subtitle_zh || '独家实时 IT 设备拍卖'
       });
     } else {
-      await supabase.from('settings').insert({ id: 'global', ...defaultSettings });
+      await supabase.from('settings').insert({
+        id: 'global',
+        email_enabled: defaultSettings.emailEnabled,
+        email_smtp: defaultSettings.emailSmtp,
+        sms_enabled: defaultSettings.smsEnabled,
+        sms_gateway: defaultSettings.smsGateway,
+        telegram_enabled: defaultSettings.telegramEnabled,
+        telegram_bot_token: defaultSettings.telegramBotToken,
+        telegram_chat_id: defaultSettings.telegramChatId,
+        banner_image: defaultSettings.bannerImage,
+        banner_title_ru: defaultSettings.bannerTitleRu,
+        banner_subtitle_ru: defaultSettings.bannerSubtitleRu,
+        banner_title_en: defaultSettings.bannerTitleEn,
+        banner_subtitle_en: defaultSettings.bannerSubtitleEn,
+        banner_title_zh: defaultSettings.bannerTitleZh,
+        banner_subtitle_zh: defaultSettings.bannerSubtitleZh
+      });
       setSettings(defaultSettings);
     }
   };
@@ -325,6 +343,32 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     checkAuth();
 
+    // Supabase Realtime Subscriptions
+    const channel = supabase.channel('public:auctions_and_bids')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'auctions' },
+        (payload) => {
+          setLots(prev => prev.map(lot => 
+            lot.id === payload.new.id ? { 
+              ...lot, 
+              currentPrice: Number(payload.new.current_price), 
+              status: payload.new.status, 
+              winnerId: payload.new.winner_id 
+            } : lot
+          ));
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'bids' },
+        () => {
+          // Ми перезапрошуємо ставки, щоб отримати ім'я користувача (з join profiles)
+          fetchBids();
+        }
+      )
+      .subscribe();
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       const isTestAdmin = document.cookie.split('; ').find(row => row.startsWith('test_admin=true'));
       if (isTestAdmin) {
@@ -352,6 +396,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     return () => {
       subscription.unsubscribe();
+      supabase.removeChannel(channel);
     };
   }, []);
 

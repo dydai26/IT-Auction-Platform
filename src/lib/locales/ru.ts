@@ -7,7 +7,7 @@ export const ru = {
   },
   hero: {
     title: 'IT Auction Platform',
-    subtitle: 'Современная площадка для участия <br /> в онлайн-аукционах',
+    subtitle: 'Для выставления лота на торги<br />свяжитесь с администрацией<br /><strong>E-mail.</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>Viber.</strong> <a href="tel:+380500506695" style="color: inherit; font-weight: bold;">+380500506695</a><br /><strong>Telegram.</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
     detail: 'Делайте ставки в реальном времени',
     button: 'Посмотреть аукционы',
   },

@@ -7,7 +7,7 @@ export const zh = {
   },
   hero: {
     title: 'IT Auction Platform',
-    subtitle: '参与在线拍卖的 <br /> 现代平台',
+    subtitle: '如需将拍品上架拍卖，<br />请联系管理部门：<br /><strong>E-mail:</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>Viber:</strong> <a href="tel:+380500506695" style="color: inherit; font-weight: bold;">+380500506695</a><br /><strong>Telegram:</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
     detail: '实时出价竞拍',
     button: '查看拍卖',
   },

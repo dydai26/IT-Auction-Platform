@@ -15,7 +15,7 @@ export default function Footer({ lang }: { lang: string }) {
           <div className={styles.logoCol}>
             <Link href={`/${lang}`} className={styles.logo} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
               <LogoIcon style={{ fontSize: '2.5rem' }} />
-              <span className="gold-text" style={{ fontSize: '1.5rem', letterSpacing: 'normal', lineHeight: 'normal' }}>Ideas Technologies</span>
+              <span style={{ fontSize: '1.5rem', letterSpacing: 'normal', lineHeight: 'normal', color: '#d4af37' }}>Ideas Technologies</span>
             </Link>
             <p 
               className={styles.subtitle} 

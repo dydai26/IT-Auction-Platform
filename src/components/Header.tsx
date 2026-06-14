@@ -24,8 +24,16 @@ export default function Header() {
         setIsLangMenuOpen(false);
       }
     };
+    
+    const handleOpenAuth = () => setIsAuthModalOpen(true);
+    
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    window.addEventListener('openAuth', handleOpenAuth);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('openAuth', handleOpenAuth);
+    };
   }, []);
 
   const handleLogout = async () => {
@@ -60,14 +68,6 @@ export default function Header() {
           borderBottom: '1px solid #e5e7eb',
         }}
       >
-        {/* Top Contact Bar */}
-        <div style={{ background: '#f8fafc', padding: '0.5rem 0', borderBottom: '1px solid #e5e7eb' }}>
-          <div className="container top-bar-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:ideas100technologies@gmail.com" className="top-bar-link"><strong>E-mail:</strong> ideas100technologies@gmail.com</a>
-            <a href="tel:+380500506695" className="top-bar-link"><strong>Viber:</strong> +380500506695</a>
-            <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" className="top-bar-link"><strong>Telegram:</strong> @ABRAM_GOLDENBERG</a>
-          </div>
-        </div>
 
         <div 
           className="container header-container" 
@@ -92,7 +92,7 @@ export default function Header() {
             }}
           >
             <LogoIcon className="logo-it" />
-            <span className="gold-text logo-text">Ideas Technologies</span>
+            <span className="logo-text" style={{ color: '#d4af37' }}>Ideas Technologies</span>
           </Link>
           
           {/* Desktop Nav */}

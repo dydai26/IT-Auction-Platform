@@ -77,6 +77,13 @@ create table public.settings (
   telegram_enabled boolean default false,
   telegram_bot_token text,
   telegram_chat_id text,
+  banner_image text,
+  banner_title_ru text,
+  banner_subtitle_ru text,
+  banner_title_en text,
+  banner_subtitle_en text,
+  banner_title_zh text,
+  banner_subtitle_zh text,
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 

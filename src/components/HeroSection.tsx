@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { getServerTranslations } from '@/lib/server-i18n';
 import styles from './HeroSection.module.css';
 import { createClient } from '@/lib/supabase/server';
-
+import HeroLoginButton from './HeroLoginButton';
 export default async function HeroSection({ lang }: { lang: string }) {
   const { t } = await getServerTranslations(lang);
   const supabase = await createClient();
@@ -45,10 +45,11 @@ export default async function HeroSection({ lang }: { lang: string }) {
             <span style={{ fontSize: '0.8rem', marginRight: '0.25rem' }}>●</span>
             {t.hero.detail}
           </p>
-          <div style={{ marginTop: '1rem' }}>
+          <div style={{ marginTop: '1rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link href={`/${lang}/auctions`} className={styles.button}>
               {t.hero.button}
             </Link>
+            <HeroLoginButton label={t.auth.signIn} />
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ export default function AuctionCard({ lot, isFavorite, onToggleFavorite, showFav
 
   const end = new Date(lot.endTime).getTime();
   const diff = end - now;
-  const isEnded = diff <= 0;
+  const isEnded = diff <= 0 || lot.status === 'ended';
 
   // Localized Labels
   const labels = {
