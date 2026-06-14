@@ -71,7 +71,7 @@ export interface NotificationSettings {
 // --- Структура контексту ---
 interface AppContextType {
   lots: Lot[];
-  addLot: (lot: Omit<Lot, 'id' | 'createdAt' | 'currentPrice'>) => Promise<void>;
+  addLot: (lot: Omit<Lot, 'id' | 'createdAt' | 'currentPrice' | 'winnerId' | 'status'>) => Promise<void>;
   updateLot: (id: string, lot: Partial<Lot>) => Promise<void>;
   deleteLot: (id: string) => Promise<void>;
   
