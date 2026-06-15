@@ -24,7 +24,7 @@ export default function ProfilePage() {
     ? lots.filter(lot => lot.winnerId === user.id) 
     : [];
 
-  const botName = process.env.NEXT_PUBLIC_TELEGRAM_BOT_NAME || 'vash_bot';
+  const botName = process.env.NEXT_PUBLIC_TELEGRAM_BOT_NAME || 'ITIdeasTechnologies_bot';
   const telegramLink = user 
     ? `https://t.me/${botName}?start=${user.id}` 
     : '#';
