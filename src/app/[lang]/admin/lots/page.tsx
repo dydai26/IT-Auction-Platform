@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useApp, Lot, Category } from '@/context/AppContext';
 
 export default function AdminLots() {
-  const { lots, addLot, updateLot, deleteLot, categories, getBidsForLot } = useApp();
+  const { lots, users, addLot, updateLot, deleteLot, categories, getBidsForLot } = useApp();
   
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -239,6 +239,15 @@ export default function AdminLots() {
                 <td style={{ padding: '1rem' }}>
                   <div style={{ fontWeight: 600, color: '#111827' }}>{lot.title_ru}</div>
                   <div style={{ fontSize: '0.8rem', color: '#6b7280' }}>EN: {lot.title_en} | ZH: {lot.title_zh}</div>
+                  {lot.status === 'ended' && lot.winnerId && (() => {
+                    const winner = users.find(u => u.id === lot.winnerId);
+                    return winner ? (
+                      <div style={{ marginTop: '0.5rem', padding: '0.5rem', backgroundColor: '#f0fdf4', borderRadius: '6px', border: '1px solid #bbf7d0', fontSize: '0.8rem', color: '#166534' }}>
+                        <strong>👑 Переможець:</strong> {winner.name} <br/>
+                        📞 {winner.phone || 'Не вказано'} | ✉️ {winner.email}
+                      </div>
+                    ) : null;
+                  })()}
                 </td>
                 <td style={{ padding: '1rem', fontSize: '0.875rem', color: '#374151' }}>{lot.category_ru}</td>
                 <td style={{ padding: '1rem', fontSize: '0.875rem', fontWeight: 600, color: '#047857' }}>
