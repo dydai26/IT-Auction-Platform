@@ -70,17 +70,17 @@ export async function POST(request: Request) {
       if (resendApiKey) {
         const resend = new Resend(resendApiKey);
         try {
-          const emailSubject = `🎉 Поздравляем! Вы выиграли лот "${auction.title_ru}"`;
+          const emailSubject = `🎉 Congratulations! You won the item "${auction.title_en || auction.title_ru}"`;
           const emailHtml = `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px; background-color: #ffffff;">
-              <h2 style="color: #111827; border-bottom: 2px solid #d4af37; padding-bottom: 10px; font-weight: 700;">Аукцион завершен!</h2>
-              <p style="font-size: 16px; color: #374151;">Здравствуйте, <b>${winnerProfile.full_name || 'Победитель'}</b>!</p>
-              <p style="font-size: 16px; color: #374151;">Вы успешно выиграли в аукционе на лот:</p>
+              <h2 style="color: #111827; border-bottom: 2px solid #d4af37; padding-bottom: 10px; font-weight: 700;">Auction Ended!</h2>
+              <p style="font-size: 16px; color: #374151;">Hello, <b>${winnerProfile.full_name || 'Winner'}</b>!</p>
+              <p style="font-size: 16px; color: #374151;">You have successfully won the auction for the item:</p>
               <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; border-left: 4px solid #d4af37; margin: 20px 0;">
-                <p style="margin: 0; font-size: 18px; font-weight: 700; color: #111827;">${auction.title_ru}</p>
-                <p style="margin: 5px 0 0 0; font-size: 16px; color: #047857; font-weight: 700;">Победная ставка: ${finalPriceStr}</p>
+                <p style="margin: 0; font-size: 18px; font-weight: 700; color: #111827;">${auction.title_en || auction.title_ru}</p>
+                <p style="margin: 5px 0 0 0; font-size: 16px; color: #047857; font-weight: 700;">Winning bid: ${finalPriceStr}</p>
               </div>
-              <p style="font-size: 14px; color: #6b7280; margin-top: 30px;">Спасибо за участие в наших IT Аукционах!</p>
+              <p style="font-size: 14px; color: #6b7280; margin-top: 30px;">Thank you for participating in our IT Auctions!</p>
             </div>
           `;
           await resend.emails.send({
@@ -105,7 +105,7 @@ export async function POST(request: Request) {
       // 5.1 Особисте повідомлення Переможцю
       if (winnerProfile?.telegram_chat_id) {
         try {
-          const winnerMsg = `🎉 <b>Поздравляем, ${winnerProfile.full_name || 'Победитель'}!</b>\n\nВы выиграли аукцион на лот: <b>${auction.title_ru}</b>\n💰 Ваша победная ставка: <b>${finalPriceStr}</b>\n\nСпасибо за участие!`;
+          const winnerMsg = `🎉 <b>Congratulations, ${winnerProfile.full_name || 'Winner'}!</b>\n\nYou won the auction for the item: <b>${auction.title_en || auction.title_ru}</b>\n💰 Your winning bid: <b>${finalPriceStr}</b>\n\nThank you for participating!`;
           const response = await fetch(`https://api.telegram.org/bot${settings.telegram_bot_token}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -129,7 +129,7 @@ export async function POST(request: Request) {
       // 5.2 Сповіщення для Адміністратора в робочий чат
       if (settings.telegram_chat_id) {
         try {
-          const adminMsg = `📢 <b>Аукцион успешно завершен!</b>\n\n📦 <b>Лот:</b> ${auction.title_ru}\n👤 <b>Победитель:</b> ${winnerProfile?.full_name || 'Аноним'} (📞 ${winnerProfile?.phone || 'номер не указан'})\n💰 <b>Финальная ставка:</b> ${finalPriceStr}`;
+          const adminMsg = `📢 <b>Auction successfully ended!</b>\n\n📦 <b>Item:</b> ${auction.title_en || auction.title_ru}\n👤 <b>Winner:</b> ${winnerProfile?.full_name || 'Anonymous'} (📞 ${winnerProfile?.phone || 'no phone provided'})\n💰 <b>Final bid:</b> ${finalPriceStr}`;
           const response = await fetch(`https://api.telegram.org/bot${settings.telegram_bot_token}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

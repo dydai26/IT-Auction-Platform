@@ -529,8 +529,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     const { error } = await supabase
       .from('settings')
-      .update(dbPayload)
-      .eq('id', 'global');
+      .upsert({ id: 'global', ...dbPayload });
 
     if (error) {
       console.error('Error updating settings:', error);

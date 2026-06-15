@@ -14,11 +14,12 @@ export async function POST(request: Request) {
       const text = payload.message.text.trim();
       const chatId = payload.message.chat.id;
 
-      if (text.startsWith('/start ')) {
-        const userId = text.replace('/start ', '').trim();
+      if (text.startsWith('/start')) {
+        const parts = text.split(' ');
+        const userId = parts.length > 1 ? parts[1].trim() : '';
         
-        if (userId.length > 0) {
-          // Викликаємо SQL-функцію для оновлення профілю в обхід RLS
+        if (userId.length > 10) {
+          // Викликаємо SQL-функцію для оновлення профілю
           const { error } = await supabase.rpc('link_telegram_account', {
             p_user_id: userId,
             p_chat_id: chatId.toString()
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
 
           if (error) {
             console.error('Помилка при прив\'язці Telegram:', error);
+            // Можна відправити повідомлення про помилку
           } else {
             // Відправляємо користувачу підтвердження
             const { data: settings } = await supabase.from('settings').select('telegram_bot_token').eq('id', 'global').single();
@@ -35,11 +37,25 @@ export async function POST(request: Request) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   chat_id: chatId,
-                  text: '✅ Ваш Telegram успешно подключен к аккаунту на сайте аукционов! Теперь вы будете получать мгновенные уведомления о ваших выигрышах.',
+                  text: '✅ Your Telegram has been successfully linked to your auction site account! You will now receive instant notifications about your winnings.',
                   parse_mode: 'HTML'
                 })
               });
             }
+          }
+        } else {
+          // Якщо користувач відправив просто /start без ID
+          const { data: settings } = await supabase.from('settings').select('telegram_bot_token').eq('id', 'global').single();
+          if (settings && settings.telegram_bot_token) {
+            await fetch(`https://api.telegram.org/bot${settings.telegram_bot_token}/sendMessage`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: '❌ <b>Account linkage failed!</b>\n\nYou must click the "Connect Telegram" button directly on the website to link your account.',
+                parse_mode: 'HTML'
+              })
+            });
           }
         }
       }
