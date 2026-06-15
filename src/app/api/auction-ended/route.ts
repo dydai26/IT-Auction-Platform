@@ -129,7 +129,7 @@ export async function POST(request: Request) {
       // 5.2 Сповіщення для Адміністратора в робочий чат
       if (settings.telegram_chat_id) {
         try {
-          const adminMsg = `📢 <b>Аукцион успешно завершен!</b>\n\n📦 <b>Лот:</b> ${auction.title_ru}\n👤 <b>Победитель:</b> ${winnerProfile?.full_name || 'Аноним'} (${winnerProfile?.email || 'без email'})\n💰 <b>Финальная ставка:</b> ${finalPriceStr}`;
+          const adminMsg = `📢 <b>Аукцион успешно завершен!</b>\n\n📦 <b>Лот:</b> ${auction.title_ru}\n👤 <b>Победитель:</b> ${winnerProfile?.full_name || 'Аноним'} (📞 ${winnerProfile?.phone || 'номер не указан'})\n💰 <b>Финальная ставка:</b> ${finalPriceStr}`;
           const response = await fetch(`https://api.telegram.org/bot${settings.telegram_bot_token}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
