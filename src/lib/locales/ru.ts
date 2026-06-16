@@ -104,7 +104,13 @@ export const ru = {
     submitLogin: 'Войти',
     submitRegister: 'Создать аккаунт',
     loading: 'Обработка...',
-    error: 'Произошла ошибка'
+    error: 'Произошла ошибка',
+    forgotPassword: 'Забыли пароль?',
+    sendResetLink: 'Отправить ссылку',
+    backToLogin: 'Вернуться ко входу',
+    resetPasswordTitle: 'Восстановление пароля',
+    newPassword: 'Новый пароль',
+    resetSuccess: 'Пароль успешно изменен!'
   },
   footer: {
     copy: 'IT Аукционы. Все права защищены.',

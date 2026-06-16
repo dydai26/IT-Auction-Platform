@@ -104,7 +104,13 @@ export const zh = {
     submitLogin: '登录',
     submitRegister: '创建账号',
     loading: '处理中...',
-    error: '发生错误'
+    error: '发生错误',
+    forgotPassword: '忘记密码？',
+    sendResetLink: '发送重置链接',
+    backToLogin: '返回登录',
+    resetPasswordTitle: '重置密码',
+    newPassword: '新密码',
+    resetSuccess: '密码修改成功！'
   },
   footer: {
     copy: 'IT Auctions. 版权所有.',

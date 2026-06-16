@@ -22,6 +22,8 @@ export default function AuthModal({ onClose }: AuthModalProps) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,17 +31,16 @@ export default function AuthModal({ onClose }: AuthModalProps) {
     setLoading(true);
 
     try {
-      if (isLogin) {
-        // Dev bypass for dydai26@gmail.com when Supabase has rate limits
-        if (email.toLowerCase() === 'dydai26@gmail.com' && password === '123456') {
-          document.cookie = "test_admin=true; path=/; max-age=3600";
-          // We will set user inside the context bypass or reload
-          // Let's use the local fallback simulation by setting auth cookie
-          onClose();
-          window.location.reload(); // Reload to let AppContext fetch the bypass profile or simulation
-          return;
-        }
+      // Визначаємо базовий URL: беремо з ENV (якщо є), інакше беремо поточний домен, інакше хардкодимо прод.
+      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
 
+      if (isForgotPassword) {
+        const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+          redirectTo: `${baseUrl}/ru/reset-password`, 
+        });
+        if (error) throw error;
+        setResetSent(true);
+      } else if (isLogin) {
         // Real Supabase Sign In
         const { data, error: signInError } = await supabase.auth.signInWithPassword({
           email: email.trim(),
@@ -63,6 +64,7 @@ export default function AuthModal({ onClose }: AuthModalProps) {
           email: email.trim(),
           password,
           options: {
+            emailRedirectTo: `${baseUrl}/ru/profile`, // Направляємо користувача в профіль після підтвердження
             data: {
               full_name: name,
               phone: phone,
@@ -115,94 +117,141 @@ export default function AuthModal({ onClose }: AuthModalProps) {
         </div>
 
         <div className={styles.content}>
-          <form onSubmit={handleSubmit}>
-            {!isLogin && (
-              <>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>{t.auth.name}</label>
-                  <input 
-                    type="text" 
-                    className={styles.input} 
-                    value={name} 
-                    onChange={(e) => setName(e.target.value)} 
-                    required 
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>{t.auth.phone}</label>
-                  <input 
-                    type="tel" 
-                    className={styles.input} 
-                    value={phone} 
-                    onChange={(e) => setPhone(e.target.value)} 
-                    required
-                  />
-                </div>
-              </>
-            )}
-
-            <div className={styles.formGroup}>
-              <label className={styles.label}>{t.auth.email}</label>
-              <input 
-                type="email" 
-                className={styles.input} 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                placeholder="example@mail.com"
-                required 
-              />
+          {resetSent ? (
+            <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📧</div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>Ссылка отправлена!</h3>
+              <p style={{ color: '#4b5563', marginBottom: '1.5rem' }}>
+                Пожалуйста, проверьте свою почту ({email}). Мы отправили туда ссылку для восстановления пароля.
+              </p>
+              <button 
+                className={styles.submitBtn} 
+                onClick={() => { setIsForgotPassword(false); setResetSent(false); setIsLogin(true); }}
+              >
+                {t.auth.backToLogin || 'Вернуться ко входу'}
+              </button>
             </div>
-            
-            <div className={styles.formGroup}>
-              <label className={styles.label}>{t.auth.password}</label>
-              <div style={{ position: 'relative' }}>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              {!isLogin && !isForgotPassword && (
+                <>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>{t.auth.name}</label>
+                    <input 
+                      type="text" 
+                      className={styles.input} 
+                      value={name} 
+                      onChange={(e) => setName(e.target.value)} 
+                      required 
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>{t.auth.phone}</label>
+                    <input 
+                      type="tel" 
+                      className={styles.input} 
+                      value={phone} 
+                      onChange={(e) => setPhone(e.target.value)} 
+                      required
+                    />
+                  </div>
+                </>
+              )}
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>{t.auth.email}</label>
                 <input 
-                  type={showPassword ? "text" : "password"} 
+                  type="email" 
                   className={styles.input} 
-                  value={password} 
-                  onChange={(e) => setPassword(e.target.value)} 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  placeholder="example@mail.com"
                   required 
-                  minLength={6}
-                  style={{ paddingRight: '2.5rem' }}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  style={{
-                    position: 'absolute',
-                    right: '10px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    color: 'var(--text-muted)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '0.25rem'
-                  }}
-                >
-                  {showPassword ? (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                      <line x1="1" y1="1" x2="23" y2="23"></line>
-                    </svg>
-                  ) : (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  )}
-                </button>
               </div>
-            </div>
+              
+              {!isForgotPassword && (
+                <div className={styles.formGroup}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <label className={styles.label} style={{ marginBottom: 0 }}>{t.auth.password}</label>
+                    {isLogin && (
+                      <button 
+                        type="button" 
+                        onClick={() => { setIsForgotPassword(true); setError(''); }}
+                        style={{ background: 'none', border: 'none', color: 'var(--primary)', fontSize: '0.85rem', cursor: 'pointer', fontWeight: 500 }}
+                      >
+                        {t.auth.forgotPassword || 'Забыли пароль?'}
+                      </button>
+                    )}
+                  </div>
+                  <div style={{ position: 'relative', marginTop: '0.5rem' }}>
+                    <input 
+                      type={showPassword ? "text" : "password"} 
+                      className={styles.input} 
+                      value={password} 
+                      onChange={(e) => setPassword(e.target.value)} 
+                      required 
+                      minLength={6}
+                      style={{ paddingRight: '2.5rem' }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      style={{
+                        position: 'absolute',
+                        right: '10px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        color: 'var(--text-muted)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        padding: '0.25rem'
+                      }}
+                    >
+                      {showPassword ? (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                          <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                      ) : (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
 
-            {error && <div className={styles.error}>{error}</div>}
+              {error && <div className={styles.error}>{error}</div>}
 
-            <button type="submit" className={styles.submitBtn} disabled={loading}>
-              {loading ? t.auth.loading : isLogin ? t.auth.submitLogin : t.auth.submitRegister}
-            </button>
-          </form>
+              <button type="submit" className={styles.submitBtn} disabled={loading}>
+                {loading 
+                  ? t.auth.loading 
+                  : isForgotPassword 
+                    ? (t.auth.sendResetLink || 'Отправить ссылку') 
+                    : isLogin 
+                      ? t.auth.submitLogin 
+                      : t.auth.submitRegister}
+              </button>
+
+              {isForgotPassword && (
+                <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+                  <button 
+                    type="button" 
+                    onClick={() => { setIsForgotPassword(false); setError(''); }}
+                    style={{ background: 'none', border: 'none', color: '#6b7280', fontSize: '0.9rem', cursor: 'pointer' }}
+                  >
+                    {t.auth.backToLogin || 'Вернуться ко входу'}
+                  </button>
+                </div>
+              )}
+            </form>
+          )}
         </div>
       </div>
     </div>

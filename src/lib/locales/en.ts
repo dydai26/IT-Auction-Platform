@@ -104,7 +104,13 @@ export const en = {
     submitLogin: 'Sign In',
     submitRegister: 'Create Account',
     loading: 'Processing...',
-    error: 'An error occurred'
+    error: 'An error occurred',
+    forgotPassword: 'Forgot password?',
+    sendResetLink: 'Send reset link',
+    backToLogin: 'Back to login',
+    resetPasswordTitle: 'Reset Password',
+    newPassword: 'New Password',
+    resetSuccess: 'Password successfully changed!'
   },
   footer: {
     copy: 'IT Auctions. All rights reserved.',
