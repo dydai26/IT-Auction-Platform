@@ -6,9 +6,9 @@ export const en = {
     contacts: 'Contacts',
   },
   hero: {
-    title: 'IT Auction Platform',
+    title: 'Ideas and Technologies',
     subtitle: 'To put a lot up for auction,<br />please contact the administration:<br /><strong>E-mail:</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>Viber:</strong> <a href="tel:+380500506695" style="color: inherit; font-weight: bold;">+380500506695</a><br /><strong>Telegram:</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
-    detail: 'Place bids in real-time',
+    detail: 'Online auction of ideas and technologies',
     button: 'View Auctions',
   },
   lots: {
@@ -98,7 +98,7 @@ export const en = {
     signIn: 'Sign In',
     signUp: 'Sign Up',
     name: 'Name (nickname)',
-    phone: 'Phone (optional)',
+    phone: 'Phone (Required)',
     email: 'Email',
     password: 'Password',
     submitLogin: 'Sign In',
