@@ -12,9 +12,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://it-auction-platform.vercel.app';
   const lang = resolvedParams.lang;
   
-  const title = lang === 'en' ? "IT Auction - Secure Platform" : 
-                lang === 'zh' ? "IT 拍卖 - 安全平台" : 
-                "ІТ - Безпечний Аукціон";
+  const title = lang === 'en' ? "Ideas and Technologies" : 
+                lang === 'zh' ? "思想与技术" : 
+                "Идеи и Технологии";
   
   const description = lang === 'en' ? "Exclusive real-time IT equipment auctions" : 
                       lang === 'zh' ? "独家实时 IT 设备拍卖" : 
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       title,
       description,
       url: `${baseUrl}/${lang}`,
-      siteName: 'IT Auction Platform',
+      siteName: 'Ideas and Technologies',
       images: [
         {
           url: '/baner.png',
@@ -80,7 +80,7 @@ export default async function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'IT Auction Platform',
+    name: 'Ideas and Technologies',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://it-auction-platform.vercel.app',
     potentialAction: {
       '@type': 'SearchAction',

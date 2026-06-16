@@ -129,12 +129,13 @@ export default function AuthModal({ onClose }: AuthModalProps) {
                   />
                 </div>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>{t.auth.phone} <span style={{fontSize: '0.8em', color: 'var(--text-muted)', fontWeight: 'normal'}}>(необов'язково)</span></label>
+                  <label className={styles.label}>{t.auth.phone}</label>
                   <input 
                     type="tel" 
                     className={styles.input} 
                     value={phone} 
                     onChange={(e) => setPhone(e.target.value)} 
+                    required
                   />
                 </div>
               </>

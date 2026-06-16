@@ -6,9 +6,9 @@ export const zh = {
     contacts: '联系方式',
   },
   hero: {
-    title: 'IT Auction Platform',
+    title: 'Ideas and Technologies',
     subtitle: '如需将拍品上架拍卖，<br />请联系管理部门：<br /><strong>E-mail:</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>Viber:</strong> <a href="tel:+380500506695" style="color: inherit; font-weight: bold;">+380500506695</a><br /><strong>Telegram:</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
-    detail: '实时出价竞拍',
+    detail: '思想与技术的在线拍卖',
     button: '查看拍卖',
   },
   lots: {
@@ -98,7 +98,7 @@ export const zh = {
     signIn: '登录',
     signUp: '注册',
     name: '姓名（昵称）',
-    phone: '电话（可选）',
+    phone: '电话',
     email: '电子邮件',
     password: '密码',
     submitLogin: '登录',

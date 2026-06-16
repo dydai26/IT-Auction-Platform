@@ -10,7 +10,7 @@ export default async function HeroSection({ lang }: { lang: string }) {
   const { data: settings } = await supabase.from('settings').select('*').eq('id', 'global').single();
 
   const bannerImage = settings?.banner_image || '/baner.png';
-  let bannerTitle = 'IT Ideas Technologies';
+  let bannerTitle = t.hero.title;
   let bannerSubtitle = t.hero.subtitle;
 
   if (settings) {
