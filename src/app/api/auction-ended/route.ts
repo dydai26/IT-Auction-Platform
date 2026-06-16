@@ -90,6 +90,32 @@ export async function POST(request: Request) {
             html: emailHtml,
           });
           results.email = 'sent';
+
+          // 4.5 Send Email to Admin
+          try {
+            const adminEmailHtml = `
+              <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px; background-color: #ffffff;">
+                <h2 style="color: #111827; border-bottom: 2px solid #d4af37; padding-bottom: 10px; font-weight: 700;">Auction Ended</h2>
+                <p style="font-size: 16px; color: #374151;"><b>Item:</b> ${auction.title_en || auction.title_ru}</p>
+                <p style="font-size: 16px; color: #374151;"><b>Winner:</b> ${winnerProfile.full_name || 'Anonymous'}</p>
+                <p style="font-size: 16px; color: #374151;"><b>Email:</b> ${winnerProfile.email || 'no email'}</p>
+                <p style="font-size: 16px; color: #374151;"><b>Phone:</b> ${winnerProfile.phone || 'no phone provided'}</p>
+                <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; border-left: 4px solid #d4af37; margin: 20px 0;">
+                  <p style="margin: 0; font-size: 16px; color: #047857; font-weight: 700;">Final bid: ${finalPriceStr}</p>
+                </div>
+              </div>
+            `;
+            await resend.emails.send({
+              from: process.env.EMAIL_FROM || 'Auctions <noreply@resend.dev>',
+              to: 'ideas100technologies@gmail.com',
+              subject: `🔔 Admin Alert: Auction Ended - ${auction.title_en || auction.title_ru}`,
+              html: adminEmailHtml,
+            });
+            console.log('Admin email sent successfully');
+          } catch (adminEmailErr) {
+            console.error('Error sending admin email:', adminEmailErr);
+          }
+
         } catch (emailErr) {
           console.error('Email sending error:', emailErr);
           results.email = `error: ${String(emailErr)}`;
@@ -129,7 +155,7 @@ export async function POST(request: Request) {
       // 5.2 Сповіщення для Адміністратора в робочий чат
       if (settings.telegram_chat_id) {
         try {
-          const adminMsg = `📢 <b>Auction successfully ended!</b>\n\n📦 <b>Item:</b> ${auction.title_en || auction.title_ru}\n👤 <b>Winner:</b> ${winnerProfile?.full_name || 'Anonymous'} (📞 ${winnerProfile?.phone || 'no phone provided'})\n💰 <b>Final bid:</b> ${finalPriceStr}`;
+          const adminMsg = `📢 <b>Auction successfully ended!</b>\n\n📦 <b>Item:</b> ${auction.title_en || auction.title_ru}\n👤 <b>Winner:</b> ${winnerProfile?.full_name || 'Anonymous'}\n📧 <b>Email:</b> ${winnerProfile?.email || 'no email'}\n📞 <b>Phone:</b> ${winnerProfile?.phone || 'no phone provided'}\n💰 <b>Final bid:</b> ${finalPriceStr}`;
           const response = await fetch(`https://api.telegram.org/bot${settings.telegram_bot_token}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
