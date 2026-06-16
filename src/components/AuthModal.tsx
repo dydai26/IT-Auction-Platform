@@ -80,7 +80,9 @@ export default function AuthModal({ onClose }: AuthModalProps) {
       }
     } catch (err: any) {
       console.error('Auth error:', err);
-      setError(err.message || t.auth?.error || 'Ошибка авторизации');
+      const errorMsg = err.message || t.auth?.error || 'Ошибка авторизации';
+      setError(errorMsg);
+      alert('Увага: ' + errorMsg); // Додаємо alert, щоб користувач точно бачив помилку
     } finally {
       setLoading(false);
     }

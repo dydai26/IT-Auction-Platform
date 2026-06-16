@@ -17,16 +17,12 @@ export default function ResetPasswordPage() {
   const { t } = useLanguage();
 
   useEffect(() => {
-    // Check if the user has a valid session to reset password
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        // Not authenticated or token invalid/expired, redirect to home
-        router.push('/');
-      }
-    };
-    checkSession();
-  }, [router, supabase.auth]);
+    // We intentionally do NOT check for session immediately here.
+    // When the user clicks the email link, the URL contains #access_token=...
+    // The Supabase client needs a moment to parse this hash and establish the session.
+    // If we check getSession() immediately on mount, it returns null and redirects them away
+    // before the session is established.
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
