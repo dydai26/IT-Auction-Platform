@@ -75,7 +75,7 @@ export default function AuthModal({ onClose }: AuthModalProps) {
 
         if (signUpError) throw signUpError;
 
-        alert('Регистрация успешна! Проверьте почту для подтверждения или войдите.');
+        alert('Registration successful! Please check your email to confirm your account or sign in.');
         setIsLogin(true);
       }
     } catch (err: any) {
@@ -120,9 +120,9 @@ export default function AuthModal({ onClose }: AuthModalProps) {
           {resetSent ? (
             <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📧</div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>Ссылка отправлена!</h3>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#111827', marginBottom: '0.5rem' }}>Link sent!</h3>
               <p style={{ color: '#4b5563', marginBottom: '1.5rem' }}>
-                Пожалуйста, проверьте свою почту ({email}). Мы отправили туда ссылку для восстановления пароля.
+                Please check your email ({email}). We have sent a password reset link there.
               </p>
               <button 
                 className={styles.submitBtn} 

@@ -33,12 +33,12 @@ export default function ResetPasswordPage() {
     setError('');
 
     if (password !== confirmPassword) {
-      setError('Пароли не совпадают');
+      setError('Passwords do not match');
       return;
     }
 
     if (password.length < 6) {
-      setError('Пароль должен содержать минимум 6 символов');
+      setError('Password must contain at least 6 characters');
       return;
     }
 
@@ -60,7 +60,7 @@ export default function ResetPasswordPage() {
       
     } catch (err: any) {
       console.error('Error updating password:', err);
-      setError(err.message || 'Ошибка обновления пароля');
+      setError(err.message || 'Error updating password');
     } finally {
       setLoading(false);
     }
@@ -90,7 +90,7 @@ export default function ResetPasswordPage() {
           marginBottom: '0.5rem',
           textAlign: 'center'
         }}>
-          {t.auth?.resetPasswordTitle || 'Восстановление пароля'}
+          Reset Password
         </h1>
         
         <p style={{
@@ -99,17 +99,17 @@ export default function ResetPasswordPage() {
           marginBottom: '2rem',
           fontSize: '0.95rem'
         }}>
-          Введите новый пароль для вашего аккаунта
+          Please enter a new password for your account
         </p>
 
         {success ? (
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '3rem', marginBottom: '1rem', color: '#10b981' }}>✓</div>
             <h3 style={{ color: '#10b981', fontWeight: 600, fontSize: '1.1rem', marginBottom: '1rem' }}>
-              {t.auth?.resetSuccess || 'Пароль успешно изменен!'}
+              Password successfully changed!
             </h3>
             <p style={{ color: '#4b5563', fontSize: '0.9rem' }}>
-              Вы будете перенаправлены на главную страницу...
+              You will be redirected to the homepage...
             </p>
           </div>
         ) : (
@@ -122,7 +122,7 @@ export default function ResetPasswordPage() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#374151' }}>
-                {t.auth?.newPassword || 'Новый пароль'}
+                New Password
               </label>
               <input
                 type="password"
@@ -136,7 +136,7 @@ export default function ResetPasswordPage() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <label style={{ fontSize: '0.9rem', fontWeight: 600, color: '#374151' }}>
-                Подтвердите пароль
+                Confirm Password
               </label>
               <input
                 type="password"
@@ -165,7 +165,7 @@ export default function ResetPasswordPage() {
                 transition: 'all 0.2s ease'
               }}
             >
-              {loading ? (t.auth?.loading || 'Обработка...') : (t.auth?.submitLogin || 'Сохранить')}
+              {loading ? 'Processing...' : 'Save Password'}
             </button>
           </form>
         )}
