@@ -575,13 +575,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   // --- Users Actions ---
   const deleteUser = async (id: string) => {
-    const { error } = await supabase
-      .from('profiles')
-      .delete()
-      .eq('id', id);
+    const { error } = await supabase.rpc('delete_user', { target_user_id: id });
 
     if (error) {
-      console.error('Error deleting user profile:', error);
+      console.error('Error deleting user:', error);
+      alert('Ошибка при удалении: ' + error.message);
       throw error;
     }
     await fetchUsers();
