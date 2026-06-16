@@ -8,14 +8,14 @@
   margin: 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  background: linear-gradient(135deg, #ff6b6b 0%, #eb4242 100%);
+  background: linear-gradient(135deg, #ff9999 0%, #ff6b6b 100%);
 }
 
 .overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(135deg, rgba(244, 32, 32, 0.8) 0%, rgba(244, 32, 32, 0.3) 100%);
+  background: transparent;
 }
 
 .container {

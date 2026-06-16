@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { getServerTranslations } from '@/lib/server-i18n';
 import styles from './HeroSection.module.css';
 import { createClient } from '@/lib/supabase/server';
@@ -9,7 +8,6 @@ export default async function HeroSection({ lang }: { lang: string }) {
   const supabase = await createClient();
   const { data: settings } = await supabase.from('settings').select('*').eq('id', 'global').single();
 
-  const bannerImage = settings?.banner_image || '/baner.png';
   let bannerTitle = t.hero.title;
   let bannerSubtitle = t.hero.subtitle;
 
@@ -25,13 +23,6 @@ export default async function HeroSection({ lang }: { lang: string }) {
 
   return (
     <section className={styles.banner}>
-      <Image 
-        src={bannerImage} 
-        alt="Auction banner" 
-        fill
-        priority
-        style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
-      />
       <div className={styles.overlay}></div>
       
       <div className={`container ${styles.container}`}>
