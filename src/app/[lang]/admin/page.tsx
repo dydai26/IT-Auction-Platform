@@ -30,9 +30,8 @@ export default function AdminDashboard() {
       </div>
       
       <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#fff', borderRadius: '12px', border: '1px solid #e5e7eb' }}>
-        <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Добро пожаловать в Админ-панель (Тестовый режим)</h3>
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Добро пожаловать в Админ-панель</h3>
         <p style={{ color: '#4b5563' }}>Здесь вы можете управлять аукционами, пользователями, категориями и настройками уведомлений.</p>
-        <p style={{ color: '#059669', marginTop: '1rem', fontWeight: 500 }}>✓ Все данные сохраняются локально в вашем браузере, чтобы вы могли протестировать систему.</p>
       </div>
     </div>
   );
