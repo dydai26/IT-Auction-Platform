@@ -97,8 +97,9 @@ export const ru = {
   auth: {
     signIn: 'Войти',
     signUp: 'Регистрация',
+    logout: 'Выйти',
     name: 'Имя (никнейм)',
-    phone: 'Телефон (обов\'язково)',
+    phone: 'Телефон (обязательно)',
     email: 'Email',
     password: 'Пароль',
     submitLogin: 'Войти',

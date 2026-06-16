@@ -97,8 +97,9 @@ export const zh = {
   auth: {
     signIn: '登录',
     signUp: '注册',
-    name: '姓名（昵称）',
-    phone: '电话',
+    logout: '退出',
+    name: '姓名 (昵称)',
+    phone: '电话 (必填)',
     email: '电子邮件',
     password: '密码',
     submitLogin: '登录',

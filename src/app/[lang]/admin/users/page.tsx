@@ -11,6 +11,7 @@ export default function UsersPage() {
       <h1 style={{ fontSize: '2rem', fontWeight: 700, color: '#111827', marginBottom: '2rem' }}>Зарегистрированные пользователи</h1>
       
       <div style={{ backgroundColor: '#fff', borderRadius: '12px', border: '1px solid #e5e7eb', overflow: 'hidden' }}>
+        <div className="table-responsive">
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead style={{ backgroundColor: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
             <tr>
@@ -64,6 +65,7 @@ export default function UsersPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   );

@@ -97,8 +97,9 @@ export const en = {
   auth: {
     signIn: 'Sign In',
     signUp: 'Sign Up',
+    logout: 'Log Out',
     name: 'Name (nickname)',
-    phone: 'Phone (Required)',
+    phone: 'Phone (required)',
     email: 'Email',
     password: 'Password',
     submitLogin: 'Sign In',

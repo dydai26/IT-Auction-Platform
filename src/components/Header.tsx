@@ -182,7 +182,7 @@ export default function Header() {
                         transition: 'border-color 0.2s ease'
                       }}
                     >
-                      Кабінет
+                      {t.nav.profile}
                     </Link>
                   )}
                   {user.role !== 'admin' && (
@@ -207,7 +207,7 @@ export default function Header() {
                   <button 
                     onClick={handleLogout}
                     style={{ background: 'none', border: 'none', color: '#dc2626', cursor: 'pointer', padding: '0.5rem', borderRadius: '6px' }}
-                    title="Выйти"
+                    title={(t.auth as any).logout || "Logout"}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -280,7 +280,7 @@ export default function Header() {
         </div>
 
         <div style={{ borderTop: '1px solid #e5e7eb', paddingTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <p style={{ fontSize: '0.875rem', color: '#6b7280', fontWeight: 500, margin: 0, textTransform: 'uppercase' }}>Мова</p>
+          <p style={{ fontSize: '0.875rem', color: '#6b7280', fontWeight: 500, margin: 0, textTransform: 'uppercase' }}>{language === 'ru' ? 'Язык' : language === 'zh' ? '语言' : 'Language'}</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
             {langs.map(l => (
               <button 
@@ -303,7 +303,7 @@ export default function Header() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#171717' }}>{user.name || user.email}</div>
               <Link 
-                href={`/${language}/profile`} 
+                href={user.role === 'admin' ? `/${language}/admin` : `/${language}/profile`} 
                 onClick={() => setIsMobileMenuOpen(false)} 
                 style={{ 
                   padding: '1rem', 
@@ -315,23 +315,18 @@ export default function Header() {
                   textDecoration: 'none' 
                 }}
               >
-                {t.nav.profile || 'Кабинет'}
+                {t.nav.profile}
               </Link>
-              {user.role === 'admin' && (
-                <Link href={`/${language}/admin`} onClick={() => setIsMobileMenuOpen(false)} style={{ padding: '1rem', background: '#f3f4f6', borderRadius: '8px', textAlign: 'center', fontWeight: 600, color: '#171717', textDecoration: 'none' }}>
-                  Адмін панель
-                </Link>
-              )}
-              <button onClick={handleLogout} style={{ padding: '1rem', background: '#fef2f2', color: '#dc2626', borderRadius: '8px', fontWeight: 600, border: 'none' }}>
-                Вийти
+              <button onClick={handleLogout} style={{ padding: '1rem', background: '#fef2f2', color: '#dc2626', borderRadius: '8px', fontWeight: 600, border: 'none', cursor: 'pointer' }}>
+                {(t.auth as any).logout || "Logout"}
               </button>
             </div>
           ) : (
             <button 
               onClick={() => { setIsMobileMenuOpen(false); setIsAuthModalOpen(true); }}
-              style={{ width: '100%', padding: '1rem', background: '#171717', color: '#fff', borderRadius: '8px', fontWeight: 600, border: 'none' }}
+              style={{ width: '100%', padding: '1rem', background: '#171717', color: '#fff', borderRadius: '8px', fontWeight: 600, border: 'none', cursor: 'pointer' }}
             >
-              Увійти
+              {t.auth.signIn}
             </button>
           )}
         </div>
