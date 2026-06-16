@@ -67,7 +67,7 @@ export default function CategoriesPage() {
                 value={nameRu}
                 onChange={(e) => setNameRu(e.target.value)}
                 placeholder="Антиквариат"
-                style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db' }}
+                className="admin-input"
                 required
               />
             </div>
@@ -78,7 +78,7 @@ export default function CategoriesPage() {
                 value={nameEn}
                 onChange={(e) => setNameEn(e.target.value)}
                 placeholder="Antiques"
-                style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db' }}
+                className="admin-input"
                 required
               />
             </div>
@@ -89,7 +89,7 @@ export default function CategoriesPage() {
                 value={nameZh}
                 onChange={(e) => setNameZh(e.target.value)}
                 placeholder="古董"
-                style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db' }}
+                className="admin-input"
                 required
               />
             </div>

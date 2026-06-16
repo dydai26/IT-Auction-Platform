@@ -361,7 +361,7 @@ export default function AdminLots() {
                             type="text" 
                             value={formData.title_ru} 
                             onChange={(e) => setFormData({...formData, title_ru: e.target.value})}
-                            style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px' }}
+                            className="admin-input"
                             required
                             placeholder="Напр. Ноутбук ThinkPad X1 Carbon"
                           />
@@ -371,7 +371,7 @@ export default function AdminLots() {
                           <textarea 
                             value={formData.description_ru} 
                             onChange={(e) => setFormData({...formData, description_ru: e.target.value})}
-                            style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', minHeight: '120px', boxSizing: 'border-box' }}
+                            className="admin-input"
                             placeholder="Описание на русском..."
                           />
                         </div>
@@ -386,7 +386,7 @@ export default function AdminLots() {
                             type="text" 
                             value={formData.title_en} 
                             onChange={(e) => setFormData({...formData, title_en: e.target.value})}
-                            style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px' }}
+                            className="admin-input"
                             required
                             placeholder="e.g. ThinkPad X1 Carbon Laptop"
                           />
@@ -396,7 +396,7 @@ export default function AdminLots() {
                           <textarea 
                             value={formData.description_en} 
                             onChange={(e) => setFormData({...formData, description_en: e.target.value})}
-                            style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', minHeight: '120px', boxSizing: 'border-box' }}
+                            className="admin-input"
                             placeholder="Description in English..."
                           />
                         </div>
@@ -411,7 +411,7 @@ export default function AdminLots() {
                             type="text" 
                             value={formData.title_zh} 
                             onChange={(e) => setFormData({...formData, title_zh: e.target.value})}
-                            style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px' }}
+                            className="admin-input"
                             required
                             placeholder="例如：ThinkPad X1 碳纤维笔记本"
                           />
@@ -421,7 +421,7 @@ export default function AdminLots() {
                           <textarea 
                             value={formData.description_zh} 
                             onChange={(e) => setFormData({...formData, description_zh: e.target.value})}
-                            style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', minHeight: '120px', boxSizing: 'border-box' }}
+                            className="admin-input"
                             placeholder="Chinese description..."
                           />
                         </div>
@@ -441,7 +441,7 @@ export default function AdminLots() {
                         <select 
                           value={currentSelectedCategory?.id || ''} 
                           onChange={(e) => handleCategorySelect(e.target.value)}
-                          style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', backgroundColor: '#fff', boxSizing: 'border-box', height: '46px' }}
+                          className="admin-input"
                           required
                         >
                           <option value="">Выберите...</option>
@@ -459,7 +459,7 @@ export default function AdminLots() {
                           type="text" 
                           value={formData.brand} 
                           onChange={(e) => setFormData({...formData, brand: e.target.value})}
-                          style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px' }}
+                          className="admin-input"
                           placeholder="Напр. Apple"
                         />
                       </div>
@@ -473,13 +473,15 @@ export default function AdminLots() {
                           min="0"
                           value={formData.startPrice} 
                           onChange={(e) => setFormData({...formData, startPrice: Number(e.target.value)})}
-                          style={{ flex: 2, padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px' }}
+                          className="admin-input"
+                          style={{ flex: 2 }}
                           required
                         />
                         <select
                           value={formData.currency}
                           onChange={(e) => setFormData({...formData, currency: e.target.value})}
-                          style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px', backgroundColor: '#fff', fontWeight: 600 }}
+                          className="admin-input"
+                          style={{ flex: 1, fontWeight: 600 }}
                           required
                         >
                           <option value="USD">USD ($)</option>
@@ -496,14 +498,16 @@ export default function AdminLots() {
                           type="date" 
                           value={getEndDateVal()} 
                           onChange={(e) => handleDateTimeChange(e.target.value, getEndTimeVal())}
-                          style={{ flex: 2, padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px' }}
+                          className="admin-input"
+                          style={{ flex: 2 }}
                           required
                         />
                         <input 
                           type="time" 
                           value={getEndTimeVal()} 
                           onChange={(e) => handleDateTimeChange(getEndDateVal(), e.target.value)}
-                          style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: '1px solid #d1d5db', outline: 'none', boxSizing: 'border-box', height: '46px' }}
+                          className="admin-input"
+                          style={{ flex: 1 }}
                           required
                         />
                       </div>
