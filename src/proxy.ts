@@ -5,7 +5,7 @@ import { updateSession } from './lib/supabase/middleware';
 const locales = ['ru', 'en', 'zh'];
 const defaultLocale = 'en';
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Ignore static files, images, api routes, and _next internals

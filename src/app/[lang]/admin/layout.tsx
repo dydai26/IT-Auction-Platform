@@ -7,7 +7,7 @@ export default async function AdminLayout({
   params
 }: {
   children: React.ReactNode;
-  params: Promise<{ lang: string }> | { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;

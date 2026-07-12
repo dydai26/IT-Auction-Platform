@@ -29,8 +29,8 @@ export default function Footer({ lang }: { lang: string }) {
             <div className={styles.contactList}>
               <div className={styles.contactItem}>
                 <span className={styles.contactLabel}>{t.footer.phoneLabel}</span>
-                <a href="tel:+380500506695" className={styles.contactLink}>
-                  +380500506695
+                <a href="tel:+48663447430" className={styles.contactLink}>
+                  +48663447430
                 </a>
               </div>
               <div className={styles.contactItem}>
@@ -47,10 +47,10 @@ export default function Footer({ lang }: { lang: string }) {
             <h3 className={styles.blockTitle}>{t.footer.socials}</h3>
             <div className={styles.contactList}>
               <div className={styles.contactItem}>
-                <span className={styles.contactLabel}>{t.footer.viber}</span>
-                <a href="viber://chat?number=%2B380500506695" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
-                  <Image src="/viber.png" alt="Viber" width={24} height={24} />
-                  +380500506695
+                <span className={styles.contactLabel}>{t.footer.whatsapp}</span>
+                <a href="https://wa.me/48663447430" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
+                  <Image src="/whatsapp-svgrepo-com.svg" alt="WhatsApp" width={24} height={24} />
+                  +48663447430
                 </a>
               </div>
               <div className={styles.contactItem}>

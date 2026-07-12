@@ -7,7 +7,7 @@ export const zh = {
   },
   hero: {
     title: 'Ideas and Technologies',
-    subtitle: '如需将拍品上架拍卖，<br />请联系管理部门：<br /><strong>E-mail:</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>Viber:</strong> <a href="tel:+380500506695" style="color: inherit; font-weight: bold;">+380500506695</a><br /><strong>Telegram:</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
+    subtitle: '如需将拍品上架拍卖，<br />请联系管理部门：<br /><strong>E-mail:</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>WhatsApp:</strong> <a href="https://wa.me/48663447430" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">+48663447430</a><br /><strong>Telegram:</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
     detail: '思想与技术的在线拍卖',
     button: '查看拍卖',
   },
@@ -86,7 +86,7 @@ export const zh = {
       },
       {
         q: '谁可以发布拍品？',
-        a: '任何平台注册用户在验证其账户后都可以创建自己的拍卖。\n\n如需将拍品上架拍卖，请联系管理部门：\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
+        a: '任何平台注册用户在验证其账户后都可以创建自己的拍卖。\n\n如需将拍品上架拍卖，请联系管理部门：\nE-mail: ideas100technologies@gmail.com\nWhatsApp: +48663447430\nTelegram: @ABRAM_GOLDENBERG'
       },
       {
         q: '出价是匿名的吗？',
@@ -119,7 +119,7 @@ export const zh = {
     socials: '社交媒体',
     phoneLabel: '手机号码',
     emailLabel: '电子邮件',
-    viber: 'Viber',
+    whatsapp: 'WhatsApp',
     telegram: 'Telegram'
   },
   notfound: {
@@ -186,7 +186,7 @@ export const zh = {
         },
         {
           title: '发布拍品',
-          desc: '如需将拍品上架拍卖，请联系管理部门：\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
+          desc: '如需将拍品上架拍卖，请联系管理部门：\nE-mail: ideas100technologies@gmail.com\nWhatsApp: +48663447430\nTelegram: @ABRAM_GOLDENBERG'
         }
       ]
     },

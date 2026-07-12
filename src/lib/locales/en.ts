@@ -7,7 +7,7 @@ export const en = {
   },
   hero: {
     title: 'Ideas and Technologies',
-    subtitle: 'To put a lot up for auction,<br />please contact the administration:<br /><strong>E-mail:</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>Viber:</strong> <a href="tel:+380500506695" style="color: inherit; font-weight: bold;">+380500506695</a><br /><strong>Telegram:</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
+    subtitle: 'To put a lot up for auction,<br />please contact the administration:<br /><strong>E-mail:</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>WhatsApp:</strong> <a href="https://wa.me/48663447430" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">+48663447430</a><br /><strong>Telegram:</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
     detail: 'Online auction of ideas and technologies',
     button: 'View Auctions',
   },
@@ -90,7 +90,7 @@ export const en = {
       },
       {
         q: 'Who can post lots?',
-        a: 'Any registered user of the platform can create their own auction after verifying their account.\n\nTo put a lot up for auction, please contact the administration:\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
+        a: 'Any registered user of the platform can create their own auction after verifying their account.\n\nTo put a lot up for auction, please contact the administration:\nE-mail: ideas100technologies@gmail.com\nWhatsApp: +48663447430\nTelegram: @ABRAM_GOLDENBERG'
       }
     ]
   },
@@ -119,7 +119,7 @@ export const en = {
     socials: 'Social Media',
     phoneLabel: 'Mobile Number',
     emailLabel: 'Email',
-    viber: 'Viber',
+    whatsapp: 'WhatsApp',
     telegram: 'Telegram'
   },
   notfound: {
@@ -186,7 +186,7 @@ export const en = {
         },
         {
           title: 'Posting Lots',
-          desc: 'To put a lot up for auction, please contact the administration:\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
+          desc: 'To put a lot up for auction, please contact the administration:\nE-mail: ideas100technologies@gmail.com\nWhatsApp: +48663447430\nTelegram: @ABRAM_GOLDENBERG'
         }
       ]
     },

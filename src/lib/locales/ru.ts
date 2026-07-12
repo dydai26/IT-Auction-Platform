@@ -7,7 +7,7 @@ export const ru = {
   },
   hero: {
     title: 'Ideas and Technologies',
-    subtitle: 'Для выставления лота на торги<br />свяжитесь с администрацией<br /><strong>E-mail.</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>Viber.</strong> <a href="tel:+380500506695" style="color: inherit; font-weight: bold;">+380500506695</a><br /><strong>Telegram.</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
+    subtitle: 'Для выставления лота на торги<br />свяжитесь с администрацией<br /><strong>E-mail.</strong> <a href="mailto:ideas100technologies@gmail.com" style="color: inherit; font-weight: bold;">ideas100technologies@gmail.com</a><br /><strong>WhatsApp.</strong> <a href="https://wa.me/48663447430" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">+48663447430</a><br /><strong>Telegram.</strong> <a href="https://t.me/ABRAM_GOLDENBERG" target="_blank" rel="noopener noreferrer" style="color: inherit; font-weight: bold;">@ABRAM_GOLDENBERG</a>',
     detail: 'Онлайн аукцион идей и технологий',
     button: 'Посмотреть аукционы',
   },
@@ -86,7 +86,7 @@ export const ru = {
       },
       {
         q: 'Кто может размещать лоты?',
-        a: 'Любой зарегистрированный пользователь платформы может создать свой аукцион после проверки учетной записи.\n\nДля выставления лота на торги свяжитесь с администрацией:\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
+        a: 'Любой зарегистрированный пользователь платформы может создать свой аукцион после проверки учетной записи.\n\nДля выставления лота на торги свяжитесь с администрацией:\nE-mail: ideas100technologies@gmail.com\nWhatsApp: +48663447430\nTelegram: @ABRAM_GOLDENBERG'
       },
       {
         q: 'Анонимны ли ставки?',
@@ -119,7 +119,7 @@ export const ru = {
     socials: 'Мы в соцсетях',
     phoneLabel: 'Мобильный номер',
     emailLabel: 'Email',
-    viber: 'Viber',
+    whatsapp: 'WhatsApp',
     telegram: 'Telegram'
   },
   notfound: {
@@ -186,7 +186,7 @@ export const ru = {
         },
         {
           title: 'Размещение лотов',
-          desc: 'Для выставления лота на торги свяжитесь с администрацией:\nE-mail: ideas100technologies@gmail.com\nViber: +380500506695\nTelegram: @ABRAM_GOLDENBERG'
+          desc: 'Для выставления лота на торги свяжитесь с администрацией:\nE-mail: ideas100technologies@gmail.com\nWhatsApp: +48663447430\nTelegram: @ABRAM_GOLDENBERG'
         }
       ]
     },
